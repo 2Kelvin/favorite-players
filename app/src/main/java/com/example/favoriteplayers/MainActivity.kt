@@ -6,7 +6,6 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -16,8 +15,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.material3.Card
 import androidx.compose.material3.ElevatedButton
+import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -27,8 +26,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.favoriteplayers.ui.theme.FavoritePlayersTheme
 
 class MainActivity : ComponentActivity() {
@@ -52,13 +53,10 @@ class MainActivity : ComponentActivity() {
 fun FavoritePlayersApp(modifier: Modifier = Modifier) {
     Column(
         modifier = modifier
-            .padding(10.dp)
+            .padding(top = 80.dp, bottom = 15.dp, start = 15.dp, end = 15.dp)
             .fillMaxSize()
-            .background(Color.LightGray)
     ) {
-        Column(modifier = modifier
-            .weight(1f)
-            .background(Color.Blue)) {
+        Column(modifier = modifier.weight(1f)) {
             // reusable PlayerCard here
             PlayerCard()
         }
@@ -66,7 +64,6 @@ fun FavoritePlayersApp(modifier: Modifier = Modifier) {
         // buttons
         Row(
             modifier = modifier
-                .background(Color.Yellow)
                 .fillMaxWidth()
                 .height(100.dp),
             verticalAlignment = Alignment.CenterVertically
@@ -98,13 +95,13 @@ fun FavoritePlayersApp(modifier: Modifier = Modifier) {
 fun PlayerCard(modifier: Modifier = Modifier) {
     Column(
         modifier = modifier
-            .background(Color.Cyan)
             // take all the weight(1f) height of the screen
             .fillMaxHeight()
     ) {
-        Card(
+        ElevatedCard(
             modifier = modifier
                 .weight(1f)
+                .background(Color.White),
         ) {
             Image(
                 painter = painterResource(id = R.drawable.curry),
@@ -113,23 +110,28 @@ fun PlayerCard(modifier: Modifier = Modifier) {
                 contentScale = ContentScale.FillHeight,
                 modifier = modifier
                     .weight(1f)
-                    .background(Color.Green)
+                    .fillMaxHeight()
                     .padding(30.dp)
             )
         }
 
-        Spacer(modifier = modifier.height(60.dp))
+        Spacer(modifier = modifier.height(50.dp))
 
         Column(
             modifier = modifier
                 .fillMaxWidth()
-                .background(Color.DarkGray)
-                .height(80.dp),
+                .background(Color(0xFFededf1))
+                .padding(15.dp),
             verticalArrangement = Arrangement.Center
         ) {
-            Text(text = "Steph Curry (30)")
-            Text(text = "Point Guard")
-            Text(text = "Golden State Warriors")
+            Text(text = "Steph Curry (30)", fontSize = 18.sp)
+            Text(
+                text = "Point Guard",
+                fontSize = 16.sp,
+                fontWeight = FontWeight.Light,
+                color = Color.Gray,
+            )
+            Text(text = "Golden State Warriors", fontSize = 16.sp)
         }
     }
 }
