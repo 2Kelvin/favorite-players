@@ -15,6 +15,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.MaterialTheme
@@ -23,6 +26,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -70,7 +74,11 @@ fun FavoritePlayersApp(modifier: Modifier = Modifier) {
         ) {
             ElevatedButton(
                 onClick = { /*TODO*/ },
-                modifier = modifier.weight(1f)
+                modifier = modifier.weight(1f),
+                // set button background-color
+                colors = ButtonDefaults.buttonColors(Color.Black),
+                // set custom button border-radius
+                shape = RoundedCornerShape(10.dp)
             ) {
                 Text(
                     text = "Previous"
@@ -81,7 +89,11 @@ fun FavoritePlayersApp(modifier: Modifier = Modifier) {
 
             ElevatedButton(
                 onClick = { /*TODO*/ },
-                modifier = modifier.weight(1f)
+                modifier = modifier.weight(1f),
+                // set button background-color
+                colors = ButtonDefaults.buttonColors(Color.Black),
+                // set custom button border-radius
+                shape = RoundedCornerShape(10.dp)
             ) {
                 Text(
                     text = "Next"
@@ -102,6 +114,12 @@ fun PlayerCard(modifier: Modifier = Modifier) {
             modifier = modifier
                 .weight(1f)
                 .background(Color.White),
+            // custom Card border-radius
+            shape = RoundedCornerShape(5.dp),
+            // add more card shadow | through elevation
+            elevation = CardDefaults.cardElevation(
+                defaultElevation = 6.dp
+            )
         ) {
             Image(
                 painter = painterResource(id = R.drawable.curry),
@@ -112,6 +130,8 @@ fun PlayerCard(modifier: Modifier = Modifier) {
                     .weight(1f)
                     .fillMaxHeight()
                     .padding(30.dp)
+                    // custom Image border-radius
+                    .clip(shape = RoundedCornerShape(3.dp))
             )
         }
 
@@ -124,7 +144,7 @@ fun PlayerCard(modifier: Modifier = Modifier) {
                 .padding(15.dp),
             verticalArrangement = Arrangement.Center
         ) {
-            Text(text = "Steph Curry (30)", fontSize = 18.sp)
+            Text(text = "Steph Curry (30)", fontSize = 20.sp)
             Text(
                 text = "Point Guard",
                 fontSize = 16.sp,
