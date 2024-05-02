@@ -2,7 +2,7 @@
 
 ![favplayer](https://github.com/2Kelvin/favorite-players/assets/85868026/5872bad0-03d3-4e45-8195-bfed7ecf48c6)
 
-## FutureMe Notes
+## Future Me Notes
 
 - make a rounded corners in Buttons and Cards using the property
     ```kotlin
