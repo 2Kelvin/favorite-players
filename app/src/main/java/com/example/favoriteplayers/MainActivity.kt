@@ -86,7 +86,7 @@ val myListOfPlayers = listOf(
         imageId = R.drawable.roro,
         name = "Christiano Ronaldo",
         jerseyNumber = 7,
-        position = "Striker / Left Winger",
+        position = "Striker | Left Winger",
         team = "Al Nassir"
     ),
 )
