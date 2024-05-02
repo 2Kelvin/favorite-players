@@ -76,7 +76,7 @@ val myListOfPlayers = listOf(
         team = "Golden State Warriors"
     ),
     Player( // kawhi
-        imageId = R.drawable.kawhi,
+        imageId = R.drawable.kawhileo,
         name = "Kawhi Leonard",
         jerseyNumber = 2,
         position = "Small Forward",
@@ -95,8 +95,6 @@ val myListOfPlayers = listOf(
 fun FavoritePlayersApp(modifier: Modifier = Modifier) {
     // state
     var arrId by remember { mutableStateOf(0) }
-    val cannotGoPrev = arrId <= 0
-    val cannotGoNext = arrId >= myListOfPlayers.size - 1
 
     Column(
         modifier = modifier
@@ -119,8 +117,7 @@ fun FavoritePlayersApp(modifier: Modifier = Modifier) {
             ReusableElevatedButton(
                 btnText = "Previous",
                 // move to the previous array index if the index is not 0 (the first player)
-                handleClick = { if (arrId > 0) arrId-- },
-                isDisabled = cannotGoPrev,
+                handleClick = { if (arrId > 0) arrId-- else arrId = 0 },
                 modifier = modifier.weight(1f)
             )
 
@@ -129,8 +126,7 @@ fun FavoritePlayersApp(modifier: Modifier = Modifier) {
             ReusableElevatedButton(
                 btnText = "Next",
                 // move to the next array index if not in the array's last item index or higher
-                handleClick = { if (arrId < myListOfPlayers.size - 1) arrId++ },
-                isDisabled = cannotGoNext,
+                handleClick = { if (arrId < myListOfPlayers.size - 1) arrId++ else arrId = 0 },
                 modifier = modifier.weight(1f)
             )
         }
@@ -195,7 +191,7 @@ fun PlayerCard(
 
 // reusable elevated button
 @Composable
-fun ReusableElevatedButton(btnText: String, handleClick: () -> Unit, isDisabled: Boolean, modifier: Modifier = Modifier) {
+fun ReusableElevatedButton(btnText: String, handleClick: () -> Unit, modifier: Modifier = Modifier) {
     ElevatedButton(
         onClick = handleClick,
         modifier = modifier.height(50.dp),
@@ -203,8 +199,6 @@ fun ReusableElevatedButton(btnText: String, handleClick: () -> Unit, isDisabled:
         colors = ButtonDefaults.buttonColors(Color.Black),
         // set custom button border-radius
         shape = RoundedCornerShape(10.dp),
-        // if isDisabled expression is true, passing false to enabled to disable button
-        enabled = !isDisabled,
     ) {
         Text(text = btnText, fontSize = 16.sp)
     }
